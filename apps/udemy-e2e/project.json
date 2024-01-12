@@ -1,0 +1,30 @@
+{
+  "name": "udemy-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/udemy-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/udemy-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "udemy:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "udemy:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "udemy:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["udemy"]
+}
